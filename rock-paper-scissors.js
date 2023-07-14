@@ -1,21 +1,16 @@
 let choices = ['Rock','Paper','Scissors']
 
-
-let computerSelection = '';
 function getComputerChoice() {
     computerSelection = choices[Math.floor(Math.random()*3)].toLowerCase();
     console.log(`Computer chooses ${computerSelection}`);
+    return computerSelection;
 }
 
-getComputerChoice()
-
-let playerSelection;
 function playerSelectionPrompt() {
     playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
-    console.log(`Player chooses ${playerSelection}`);
+    console.log(`You chose ${playerSelection}`)
+    return playerSelection;
 }
-
-playerSelectionPrompt()
 
 function capitalizeWord(word) {
     let firstLetter = word.charAt(0);
@@ -24,12 +19,37 @@ function capitalizeWord(word) {
     return capitalizedWord
 }
 
+
+let playerWins = 0;
+let computerWins = 0;
 function playRound(playerSelection,computerSelection) {
     if (playerSelection == 'rock' && computerSelection == 'paper' || playerSelection == 'paper' && computerSelection == 'scissors' || playerSelection == 'scissors' && computerSelection == 'rock') {
-        console.log(`You lose. ${capitalizeWord(computerSelection)} beats ${capitalizeWord(playerSelection)}`)
+        console.log(`You lose. ${capitalizeWord(computerSelection)} beats ${capitalizeWord(playerSelection)}`);
+        computerWins++;
     } else if (playerSelection == computerSelection) {
-        console.log(`It's a draw.`)
-    } else console.log(`You win! ${capitalizeWord(playerSelection)} beats ${capitalizeWord(computerSelection)}`)
+        console.log(`It's a draw.`);
+    } else {
+        console.log(`You win! ${capitalizeWord(playerSelection)} beats ${capitalizeWord(computerSelection)}`);
+        playerWins++;
+    }
 }
 
-playRound(playerSelection,computerSelection)
+
+// getComputerChoice()
+// playerSelectionPrompt()
+// playerSelection = 'rock'
+// playRound(playerSelection,computerSelection)
+
+let gamesPlayed = 0;
+function game() {
+    for (gamesPlayed; gamesPlayed < 5; gamesPlayed++){
+        playRound(playerSelectionPrompt(),getComputerChoice())
+    }
+}
+
+game()
+if (playerWins > computerWins) {
+    console.log(`Congratulations! You beat the computer ${playerWins} to ${computerWins}`)
+} else {
+    console.log(`Sorry! You the computer beat you ${computerWins} to ${playerWins}`)
+}

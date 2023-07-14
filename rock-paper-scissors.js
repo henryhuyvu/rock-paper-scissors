@@ -35,14 +35,8 @@ function playRound(playerSelection,computerSelection) {
 }
 
 
-// getComputerChoice()
-// playerSelectionPrompt()
-// playerSelection = 'rock'
-// playRound(playerSelection,computerSelection)
-
-let gamesPlayed = 0;
 function game() {
-    for (gamesPlayed; gamesPlayed < 5; gamesPlayed++){
+    for (let gamesPlayed = 0; gamesPlayed < 5; gamesPlayed++){
         playRound(playerSelectionPrompt(),getComputerChoice())
     }
 }
